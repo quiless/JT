@@ -1,0 +1,13 @@
+page-verify-number {
+    ion-input{
+        box-shadow: 1px 1px 5px #000;
+        border-radius: 2px;
+        font-size: 30px;
+        font-weight: bold;
+        color: #888;
+    }
+
+    ion-input input{
+        margin: 5px 8px !important;
+    }
+}

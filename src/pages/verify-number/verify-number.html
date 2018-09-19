@@ -1,0 +1,62 @@
+<ion-content>
+  
+  <div class="justtap-box">
+    <div class="header green" style="text-align: center; padding-bottom: 40px;">
+      <h4>
+        We send an SMS with the verification code to</h4>        
+      <h3>{{ countryCode + " " + phoneNumber }}</h3>
+    </div>
+    <div class="content">
+      <ion-row>
+        <ion-col>
+          <h3 style="font-size: 18px;text-align: center;">Enter the 6-digit code, and click in confirm!</h3>
+        </ion-col>
+      </ion-row>
+        <ion-row>
+            <ion-col>
+                <ion-input #inputNumbers [(ngModel)]="dig1" type="tel" text-center maxlength="1" min="0" max="9" (ionFocus)="onFocus(0)" (keydown)="changeFocus()"></ion-input>
+            </ion-col>
+            <ion-col>
+                <ion-input #inputNumbers [(ngModel)]="dig2" type="tel" text-center maxlength="1" min="0" max="9" (ionFocus)="onFocus(1)" (keydown)="changeFocus()"></ion-input>
+            </ion-col>          
+            <ion-col>
+                <ion-input #inputNumbers [(ngModel)]="dig3" type="tel" text-center maxlength="1" min="0" max="9" (ionFocus)="onFocus(2)" (keydown)="changeFocus()"></ion-input>
+            </ion-col>
+            <ion-col>
+                <ion-input #inputNumbers [(ngModel)]="dig4" type="tel" text-center maxlength="1" min="0" max="9" (ionFocus)="onFocus(3)" (keydown)="changeFocus()"></ion-input>
+            </ion-col>
+            <ion-col>
+                <ion-input #inputNumbers [(ngModel)]="dig5" type="tel" text-center maxlength="1" min="0" max="9" (ionFocus)="onFocus(4)" (keydown)="changeFocus()"></ion-input>
+            </ion-col>
+            <ion-col>
+                <ion-input #inputNumbers [(ngModel)]="dig6" type="tel" text-center maxlength="1" min="0" max="9" (ionFocus)="onFocus(5)" (keydown)="changeFocus()"></ion-input>
+            </ion-col>
+          </ion-row>
+       
+        <ion-row>
+          <ion-col text-center style="color: #CCC">
+              Time left: <b>{{time }}</b> seconds
+           
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="time == 0">
+            <ion-col>
+                <button ion-button block (click)="sendSmsVerificationCodeAgain()" color="light" icon-start>
+                    <ion-icon name="chatboxes"></ion-icon>Resend code
+                </button>           
+            </ion-col>
+          </ion-row>
+    </div>
+  </div>
+  <ion-grid *ngIf="dig1 && dig2 && dig3 && dig4 && dig5 && dig6">
+    <ion-row>
+      <ion-col col-12>       
+        <button ion-button float-right (click)="confirm()" color="light">Confirm</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="custom-footer">
+      Signing up, you agree to the<br> <a>Terms of Service</a>
+  </div>
+  </ion-content>
+  

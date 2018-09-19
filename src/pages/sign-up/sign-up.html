@@ -1,0 +1,29 @@
+<ion-content>
+  <div class="justtap-box">
+    <div class="header green">
+      <h3>New Here? Whats your name?</h3>
+      <h4>Please enter your full name to create a new account</h4>
+    </div>
+    <div class="content">
+        <ion-list>
+            <ion-item>        
+                  <ion-input clearInput [(ngModel)]="name"  type="text" placeholder="First Name"></ion-input>
+          </ion-item>
+          <ion-item>        
+                <ion-input clearInput [(ngModel)]="lastName"  type="text" placeholder="Last Name"></ion-input>
+          </ion-item>
+      </ion-list>
+    </div>
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>       
+        <button ion-button float-right color="light">Enter</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="custom-footer">
+      Signing up, you agree to the<br> <a>Terms of Service</a>
+  </div>
+  </ion-content>
+  

@@ -1,0 +1,27 @@
+page-presentation {
+
+}
+
+ion-content{
+    color: #FFF !important;
+}
+.swiper-pagination-bullet{
+    background-color: #FFF;
+}
+
+.presentation-slide h2{
+    font-size: 30px !important;
+}
+
+.presentation-slide h4{
+    font-size: 14px !important;
+}
+.presentation-slide .justtap{
+    width: 25%;
+    min-height: 100px;
+    background-image: url(../../assets/imgs/just-tap-only-words.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+}

@@ -1,0 +1,42 @@
+
+<ion-content>
+    <!-- <ion-refresher (ionRefresh)="updateSocials($event)">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          closeDuration="5"
+          refreshingSpinner="bubbles"
+          refreshingText="Refreshing...">
+        </ion-refresher-content>
+      </ion-refresher> -->
+    <ion-card *ngFor="let profile of profiles; let j = index;" ion-long-press [interval]="4000" (onPressing)='deleteProfile(profile, index)'>
+        <ion-item>
+            <ion-avatar item-start>
+                <img src="https://scontent.fcgh3-1.fna.fbcdn.net/v/t1.0-1/p160x160/11800374_684601471641695_2231929614019576693_n.jpg?_nc_cat=0&oh=37cf00e24b892123537ac2ec61f37630&oe=5BF6D5F2">
+            </ion-avatar>
+            <h1>{{ profile.ProfileName}} </h1> 
+            <ion-avatar item-end (click)='createQRCode(profile)'>
+                    <ion-icon icon-right name="share" ios="md-share"></ion-icon>
+            </ion-avatar>
+        </ion-item>
+        
+        <ion-card-content>
+            <ion-row>
+                <ion-col col-2 *ngFor="let social of profile.socials; let i = index;" (tap)="changeStatus(profile, i, j)">
+                        <ion-icon name="{{social.icon}}" [ngStyle]="{'color': social.IsActive == true ? '#0077B5' : ''}"></ion-icon>
+                </ion-col>
+            </ion-row>
+            <ngx-qrcode *ngIf="profile.value != ''"
+                [qrc-element-type]="elementType" 
+                [qrc-value] = "profile.value"
+                qrc-class = "aclass"
+                qrc-errorCorrectionLevel = "L">
+            </ngx-qrcode>
+        </ion-card-content>
+    </ion-card>
+</ion-content>
+
+<ion-footer no-shadow>
+    <ion-fab bottom right >
+        <button ion-fab right (click)='addProfile()'><ion-icon name="add"></ion-icon></button>
+    </ion-fab>
+</ion-footer>
