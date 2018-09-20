@@ -27,3 +27,50 @@
 .tabs-md .tab-button-icon {
     margin-top : 40% !important;
 }
+
+
+ion-app{
+    font-family: 'Calibri' !important;
+}
+ion-content{
+    background-color: #f3efef !important;
+}
+
+
+.justtap-box .header{
+    background-color:#6849cb !important; 
+    padding: 10px;
+    padding-bottom: 60px;
+}
+
+.justtap-box .header.green{
+    background-color:#43be49 !important; 
+}
+
+.justtap-box .header h3{
+    font-size: 18x;
+    margin-bottom: 5px;
+}
+.justtap-box .header h4{
+    font-size: 14px;
+    margin-top: 0px;
+}
+
+.justtap-box .content{
+    margin: 10px;
+    box-shadow: 1px 1px 2px #c3c3c3;
+    top: -40px;
+    position: relative;
+    padding: 10px;
+    background-color: #fff;
+    color:#000;
+}
+
+.custom-footer{
+    position: absolute;
+    color: #000;
+    bottom: 30px;
+    text-align: center;
+    width: 100%;
+    font-size: 14px;
+}
