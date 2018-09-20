@@ -4,12 +4,16 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { TabsPage } from '../pages/tabs/tabs';
+import { PresentationPage } from '../pages/presentation/presentation';
+import { SignUpPage } from '../pages/sign-up/sign-up';
+import { SignInPage } from '../pages/sign-in/sign-in';
+import { VerifyNumberPage } from '../pages/verify-number/verify-number';
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TabsPage;
+  rootPage:any = SignInPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {
