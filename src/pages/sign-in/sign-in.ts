@@ -20,7 +20,6 @@ import { SmsVerificationProvider } from '../../providers/sms-verification/sms-ve
 })
 export class SignInPage {
 
-  public recaptchaVerifier: firebase.auth.RecaptchaVerifier;
   verificationId: string = '';
   phoneMask:any = {mask:'00/00/0000', len:10};
   countryCode:string=undefined;
@@ -72,8 +71,14 @@ export class SignInPage {
     },(error)=>{
       console.log(error)
     });**/
-   
-
+   /****/
+    this.auth.signIn("-LMsEBF4049LEzg2pfv7").then((data)=>{
+      console.log("success",data);
+    },(error)=>{
+      console.log("error",error);
+    });
+    return;
+   /**
   if(this.phoneNumber == undefined 
       || (this.countryCode == "+55" && this.phoneNumber.length < 15)
       || (this.countryCode == "+1" && this.phoneNumber.length < 12)){
@@ -114,7 +119,8 @@ export class SignInPage {
       alert.present();
     });
 
-
+     **/
+    
     /**this.navCtrl.push(VerifyNumberPage, {
       "carrier" : "Claro",
       "is_cellphone" : true,

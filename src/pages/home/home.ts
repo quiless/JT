@@ -8,6 +8,9 @@ import { OauthCordova } from 'ng2-cordova-oauth/platform/cordova';
 import { UserService } from '../../services/userService'
 import { TwitterConnect } from '@ionic-native/twitter-connect';
 import { TwitterModel } from '../../models/Twitter'
+import { AuthProvider } from '../../providers/auth/auth';
+import { user } from '../../models/user';
+import { UserProvider } from '../../providers/user/user';
 
 @Component({
   selector: 'page-home',
@@ -41,14 +44,25 @@ export class HomePage {
     {Id : 6, Name: "Skype"},
     {Id : 7, Name: "Instagram"},
   ]
-
-  constructor(private events : Events, private twitterConnect : TwitterConnect, private userService : UserService, private alert : AlertController, private linkedIn: LinkedIn, public navCtrl: NavController, private actionSheetController : ActionSheetController) {
+  currentUser:user;
+  constructor(private events : Events, 
+    private twitterConnect : TwitterConnect, 
+    private userService : UserService, 
+    private userProvider:UserProvider,
+    private alert : AlertController, 
+    private linkedIn: LinkedIn, 
+    public navCtrl: NavController, 
+    private actionSheetController : ActionSheetController,
+    private auth: AuthProvider) {
     console.log(this.social);
 
     this.lstSocials.push({icon : 'call'});
+    this.currentUser = auth.currentUser;
+    
   }
 
   connectInstagram(){
+
     if (this.instagramProfile.username == undefined) {
       this.oauthInstagram.logInVia(this.instagramProvider).then((success : any)=> {
         this.userService.getInstagramUserInfo(success.access_token).then(result => {

@@ -64,7 +64,12 @@ export class VerifyNumberPage {
     this.smsVerification.checkSmsVerification(this.phoneNumber,this.countryCode,this.dig1 + this.dig2 + this.dig3 + this.dig4+this.dig5+this.dig6)
     .then((data)=>{
       console.log(data);
-      this.loading.dismiss();
+      this.auth.signIn((<any>data).key).then((user)=>{
+        console.log("Signin",user);
+        this.loading.dismiss();
+      },(error)=>{
+        console.log("error",error);
+      });
     },(error)=>{      
       this.loading.dismiss();
 

@@ -8,6 +8,8 @@
           refreshingText="Refreshing...">
         </ion-refresher-content>
       </ion-refresher> -->
+      <h3 text-center *ngIf="!profiles || profiles.length ==0">You don't have any sharing profiles yet!</h3>
+      <img *ngIf="!profiles || profiles.length ==0" src="../../assets/imgs/sad-face.png" style="opacity: 0.2;width: 50%;position:relative;margin:0 auto;    display: block;    margin-top: 20%;">
     <ion-card *ngFor="let profile of profiles; let j = index;" ion-long-press [interval]="4000" (onPressing)='deleteProfile(profile, index)'>
         <ion-item>
             <ion-avatar item-start>

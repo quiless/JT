@@ -26,7 +26,4 @@ export class UserService {
     spliceLst(item){
         this.lstSocials.splice(this.lstSocials.findIndex(e => e.icon === item),1);
     }
-
-
-
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, AlertController } from 'ionic-angular';
 import { UserService } from '../../services/userService'
 import { Events } from 'ionic-angular';
+import { AuthProvider } from '../../providers/auth/auth';
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
