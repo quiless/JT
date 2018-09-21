@@ -25,8 +25,8 @@ export class SmsVerificationProvider {
 
   sendSmsVerification(phonenumber:string,countrycode:string){
     let obj = {
-      "phonenumber":phonenumber,
-      "countrycode":countrycode
+      "phoneNumber":phonenumber,
+      "countryCode":countrycode
     };
     return new Promise((resolve, reject) => {
       this.http.post("https://us-central1-justtap-8e195.cloudfunctions.net/sendSmsVerification",JSON.stringify(obj),this.options)
@@ -46,8 +46,8 @@ export class SmsVerificationProvider {
 
   checkSmsVerification(phonenumber:string,countrycode:string,code:string){
     let obj = {
-      "phonenumber":phonenumber,
-      "countrycode":countrycode,
+      "phoneNumber":phonenumber,
+      "countryCode":countrycode,
       "verification_code":code
     };
 

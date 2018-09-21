@@ -9,7 +9,6 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { HTTP } from '@ionic-native/http';
 import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
 import { LinkedIn } from '@ionic-native/linkedin';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { TwitterConnect } from '@ionic-native/twitter-connect';
@@ -20,14 +19,18 @@ import { PresentationPage } from '../pages/presentation/presentation';
 import { SignInPage } from '../pages/sign-in/sign-in';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { BrMaskerModule } from 'brmasker-ionic-3';
+
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuth } from 'angularfire2/auth';
+
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
 import { VerifyNumberPage } from '../pages/verify-number/verify-number';
 import { SmsVerificationProvider } from '../providers/sms-verification/sms-verification';
 import { HttpModule } from '@angular/http';
 import { UserProvider } from '../providers/user/user';
+import { SplashPage } from '../pages/splash/splash';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,8 @@ import { UserProvider } from '../providers/user/user';
     PresentationPage,
     SignInPage,
     SignUpPage,
-    VerifyNumberPage
+    VerifyNumberPage,
+    SplashPage
   ],
   imports: [
     BrowserModule,
@@ -47,6 +51,7 @@ import { UserProvider } from '../providers/user/user';
     NgxQRCodeModule,
     BrMaskerModule,
     HttpModule,
+    IonicStorageModule.forRoot(),
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyCPkujlY1dTQjZGukzXjzqPNK5CY33PF4k",
       authDomain: "justtap-8e195.firebaseapp.com",
@@ -56,6 +61,7 @@ import { UserProvider } from '../providers/user/user';
       messagingSenderId: "723897753446"
     }),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     IonicModule.forRoot(MyApp, { tabsLayout: 'icon-start', tabsPlacement: 'top'})
   ],
   bootstrap: [IonicApp],
@@ -68,18 +74,17 @@ import { UserProvider } from '../providers/user/user';
     PresentationPage,
     SignInPage,
     SignUpPage,
-    VerifyNumberPage
+    VerifyNumberPage,
+    SplashPage
   ],
   providers: [
     StatusBar,
-    SplashScreen,
     HTTP,
     UserService,
     LinkedIn,
     TwitterConnect,
     TwitterService,
     InAppBrowser,
-    AngularFireAuth,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     SmsVerificationProvider,

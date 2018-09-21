@@ -15,8 +15,7 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
-.tabs-md-primary .tab-button[aria-selected=false] .tab-button-icon {
-    
+.tabs-md-primary .tab-button[aria-selected=false] .tab-button-icon {    
     color:rgb(0, 0, 102)!important;
 }
 
@@ -24,8 +23,8 @@
     color:#fff!important;
 }
 
-.tabs-md .tab-button-icon {
-    margin-top : 40% !important;
+.tabs-md .tab-button-icon {   
+    font-size: 3rem !important;
 }
 
 
