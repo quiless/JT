@@ -93,6 +93,11 @@ export class HomePage {
   }
 
   connectTwitter(){
+    var result = this.auth.testSearch().subscribe((result)=>{
+      console.log(result);
+      
+    });
+    return;
     if (this.twitterProfile.userId == undefined){
       var alerta = this.alert.create();
       this.twitterConnect.login().then((result : any) => {

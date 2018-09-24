@@ -12,12 +12,12 @@ export class UserService {
 
     constructor(private http: HTTP, private auth : AuthProvider){
 
-        this.auth.getInstagram().subscribe((result : any) => {
-    
+        this.auth.getInstagram().subscribe((result : any) => {    
             var contains = this.lstSocials.findIndex(e => e.icon === 'logo-instagram');
             if(result != undefined && result != null && contains == -1){
                 result.icon = 'logo-instagram';
                 result.name = 'instagram';
+                result.userAlias=result.username;
                 this.lstSocials.push(result);
             }
           }, error => {
@@ -30,6 +30,7 @@ export class UserService {
             if(result != undefined && result != null && contains == -1){
                 result.icon = 'logo-twitter'
                 result.name = 'twitter';
+                result.userAlias=result.userName;
                 this.lstSocials.push(result);
             }
           }, error => {
@@ -42,6 +43,7 @@ export class UserService {
             if(result != undefined && result != null && contains == -1){
                 result.icon = 'logo-linkedin';
                 result.name = 'linkedin';
+                result.userAlias=result.firstName;
                 this.lstSocials.push(result);
             }
           }, error => {
@@ -49,7 +51,11 @@ export class UserService {
           });
 
 
-        this.lstSocials.push({icon:'call', name : 'phone'});
+        this.lstSocials.push({
+            icon:'call', 
+            name : 'phone',
+            userAlias: `${this.auth.currentUser.countryCode} ${this.auth.currentUser.phoneNumber}`
+        });
     }
 
 

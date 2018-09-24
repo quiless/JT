@@ -42,6 +42,7 @@ export class ContactPage {
     this.auth.getProfiles().subscribe((result : any) => {
       if(result != undefined && result != null){
         this.profiles = result;
+        console.log("profiles",this.profiles);
       }
     }, error => {
       console.log(error);
@@ -151,18 +152,17 @@ export class ContactPage {
   }
 
 
-  setIconStyle(profile,social){
-    var style;
-    if(social.name == 'instagram'){   
-      style = {'color' : profile.instagram == undefined ? '' : '#0077B5'};
-    }  else if (social.name == 'linkedin') {
-      style = {'color' : profile.linkedin == undefined ? '' : '#0077B5'};
-    } else if (social.name == 'twitter') {
-      style = {'color' : profile.twitter == undefined ? '' : '#0077B5'};
-    } else if (social.name == 'phone'){
-      style = {'color' : profile.phone == undefined ? '' : '#0077B5'};
+  setSocialButtonClass(profile,social){
+    if(social.name == 'instagram' &&  profile.instagram != undefined){   
+      return "social-enabled";
+    }  else if (social.name == 'linkedin' &&  profile.linkedin != undefined) {
+      return "social-enabled";
+    } else if (social.name == 'twitter' &&  profile.twitter != undefined) {
+      return "social-enabled";
+    } else if (social.name == 'phone' &&  profile.phone != undefined){
+      return "social-enabled";
     }
-    return style;
+    return "social-disabled";
   }
 
 }

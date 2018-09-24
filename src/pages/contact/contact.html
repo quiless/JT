@@ -11,23 +11,36 @@
       <h3 text-center *ngIf="!profiles || profiles.length ==0">You don't have any sharing profiles yet!</h3>
       <img *ngIf="!profiles || profiles.length ==0" src="../../assets/imgs/sad-face.png" style="opacity: 0.2;width: 50%;position:relative;margin:0 auto;    display: block;    margin-top: 20%;">
     <ion-card *ngFor="let profile of profiles; let j = index;" ion-long-press [interval]="2000" (onPressing)='deleteProfile(profile, j)'>
-        <ion-item>
-            <ion-avatar item-start>
-                <img src="../../assets/imgs/no-photo.png">
-            </ion-avatar>
-            <h1>{{ profile.ProfileName}} </h1> 
-            <ion-avatar item-end>
-            </ion-avatar>
-        </ion-item>
-        
+        <ion-card-header style="padding: 0px !important;">
+                <ion-item>
+                        <ion-avatar item-start>
+                            <img src="../../assets/imgs/no-photo.png">
+                        </ion-avatar>
+                        <h2>{{ profile.ProfileName}}</h2>
+                        <p>Shared 10 times</p>
+                    </ion-item>
+        </ion-card-header>
+     
         <ion-card-content>
-            <ion-row>
-                <ion-col col-2 *ngFor="let social of socials; let i = index;" (tap)="changeStatus(profile, social, i, j)">
-                        <ion-icon name="{{social.icon}}" [ngStyle]="setIconStyle(profile,social)"></ion-icon>
-                </ion-col>
-            </ion-row>
-          
+                <ion-row>
+                    <ion-col col-12  text-center>
+                            <button class="social-button" [ngClass]="setSocialButtonClass(profile,social)" *ngFor="let social of socials; let i = index;" (tap)="changeStatus(profile, social, i, j)" >
+                                    <ion-icon name="{{social.icon}}" item-start></ion-icon>
+                                </button>
+                    </ion-col>
+                </ion-row>
+              
         </ion-card-content>
+       
+        <!--<ion-card-content *ngIf="j == 0">
+            <ion-list>
+                <button ion-item  *ngFor="let social of socials; let i = index;" (tap)="changeStatus(profile, social, i, j)"  [ngClass]="setSocialButtonClass(profile,social)">
+                    <ion-icon name="{{social.icon}}" style="font-size: 30px !important;" item-start></ion-icon>
+                    <span class="blurry-text">{{ social.userAlias }}</span>
+                </button>
+            </ion-list>
+        </ion-card-content>-->
+
     </ion-card>
 </ion-content>
 
