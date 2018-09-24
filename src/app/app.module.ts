@@ -22,7 +22,7 @@ import { BrMaskerModule } from 'brmasker-ionic-3';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-
+import { ShareModalComponent } from '../modals/share-modal/share-modal'
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
 import { VerifyNumberPage } from '../pages/verify-number/verify-number';
@@ -40,6 +40,7 @@ import { IonicStorageModule } from '@ionic/storage';
     HomePage,
     TabsPage,
     PresentationPage,
+    ShareModalComponent,
     SignInPage,
     SignUpPage,
     VerifyNumberPage,
@@ -71,6 +72,7 @@ import { IonicStorageModule } from '@ionic/storage';
     ContactPage,
     HomePage,
     TabsPage,
+    ShareModalComponent,
     PresentationPage,
     SignInPage,
     SignUpPage,

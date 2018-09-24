@@ -1,5 +1,5 @@
 import { Component,  } from '@angular/core';
-import { NavController, ActionSheetController, Alert, AlertController, Events } from 'ionic-angular';
+import { NavController, ActionSheetController, Alert, AlertController, Events, ModalController } from 'ionic-angular';
 import { LinkedIn, LinkedInLoginScopes } from '@ionic-native/linkedin';
 import { Linkedin } from '../../models/linkedin'
 import { InstagramModel } from '../../models/Instagram'
@@ -11,6 +11,7 @@ import { TwitterModel } from '../../models/Twitter'
 import { AuthProvider } from '../../providers/auth/auth';
 import { user } from '../../models/user';
 import { UserProvider } from '../../providers/user/user';
+import { ShareModalComponent } from '../../modals/share-modal/share-modal'
 
 @Component({
   selector: 'page-home',
@@ -51,6 +52,7 @@ export class HomePage {
     private userProvider:UserProvider,
     private alert : AlertController, 
     private linkedIn: LinkedIn, 
+    private modalController : ModalController,
     public navCtrl: NavController, 
     private actionSheetController : ActionSheetController,
     private auth: AuthProvider) {
@@ -60,6 +62,11 @@ export class HomePage {
 
     
     
+  }
+
+  share(){
+    let guaritaModal = this.modalController.create(ShareModalComponent);
+    guaritaModal.present();
   }
 
   connectInstagram(){
