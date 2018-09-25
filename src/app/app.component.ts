@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { Platform,App } from 'ionic-angular';
+import { Platform,App, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
-import { TabsPage } from '../pages/tabs/tabs';
 import { PresentationPage } from '../pages/presentation/presentation';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { SignInPage } from '../pages/sign-in/sign-in';
@@ -11,6 +10,8 @@ import { HomePage } from '../pages/home/home';
 import { user } from '../models/user';
 import { SplashPage } from '../pages/splash/splash';
 import { Storage } from '@ionic/storage';
+import { ProfileSharingConfirmationPage } from '../pages/profile-sharing-confirmation/profile-sharing-confirmation';
+import { UserProvider } from '../providers/user/user';
 
 @Component({
   templateUrl: 'app.html'
@@ -18,8 +19,9 @@ import { Storage } from '@ionic/storage';
 export class MyApp {
   rootPage:any = SplashPage;
 
-  constructor(public app:App,platform: Platform, statusBar: StatusBar,auth:AuthProvider,public storage:Storage) {
+  constructor(public app:App,platform: Platform, statusBar: StatusBar,auth:AuthProvider,user:UserProvider,public storage:Storage,public modalCtrl: ModalController) {
     let splashTimeout;
+    let executeFirstTime=false;
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -39,6 +41,7 @@ export class MyApp {
       },3000);
     });
     
+   
     auth.authState
     .subscribe(
       u => {
@@ -50,7 +53,7 @@ export class MyApp {
           if (u && (!(<user>u).firstName || !(<user>u).lastName) ) {
             this.rootPage = SignUpPage;
           }else{
-            this.rootPage = TabsPage;
+            this.rootPage = HomePage;
           }
         }
         else {
@@ -60,7 +63,13 @@ export class MyApp {
       () => {
         //this.rootPage = SignInPage;
       }
-    );/****/
+    );
 
+    /**auth.testSearch.subscribe((data)=>{
+      console.log("value changed");
+      let profileModal = this.modalCtrl.create(ProfileSharingConfirmationPage);
+      profileModal.present();
+    });**/
+   
   }
 }

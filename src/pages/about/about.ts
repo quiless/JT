@@ -13,11 +13,5 @@ export class AboutPage {
 
   }
 
-  logout(){
-   
-    this.auth.logout().then(()=>{
-      console.log("after logout");
-      this.app.getRootNav().setRoot(SignInPage);
-    });
-  }
+  
 }

@@ -5,6 +5,7 @@ import 'rxjs/add/operator/toPromise';
 import { user } from '../../models/user';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFirestore,AngularFirestoreCollection } from 'angularfire2/firestore';
 import * as firebase from 'firebase';
 import 'rxjs/add/operator/switchMap';
 import { Observable } from 'rxjs/internal/Observable';
@@ -157,9 +158,12 @@ export class AuthProvider {
   }
 
   get testSearch(){
-    return this.db.list('users/',ref=>ref.orderByChild("shared").equalTo("1234")).snapshotChanges()
-    .map(changes => {
-      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-    });
+    //return this.afs.collection('teste', ref => ref.where('teste', '==', 'kelvin')).snapshotChanges();
+    //this.db.list('/requests/${this.currentUser.key}').push({teste:"123"});
+   return null;
+    /**return this.db.list('users/',ref=>ref.orderByChild("shared").equalTo("1234")).snapshotChanges()
+    .subscribe((data)=>{
+      console.log("here");
+    });**/
   }
 }

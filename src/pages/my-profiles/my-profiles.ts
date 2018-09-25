@@ -4,10 +4,10 @@ import { UserService } from '../../services/userService'
 import { Events } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 @Component({
-  selector: 'page-contact',
-  templateUrl: 'contact.html'
+  selector: 'my-profiles',
+  templateUrl: 'my-profiles.html'
 })
-export class ContactPage {
+export class MyProfilesPage {
   elementType = 'url';
   value = 'Techiediaries';
 

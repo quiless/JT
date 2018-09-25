@@ -1,72 +1,24 @@
+<ion-menu [content]="content">
 
+ 
 
-<ion-content padding>
-    <div class="profile-box">
-        <div class="header">
-            <div class="avatar">
-                <img src="../../assets/imgs/no-photo.png">
-            </div>
-            <h4>{{ currentUser.firstName + " " + currentUser.lastName }}</h4>
-            <ion-icon icon-right name="share" (click)="updateSocialNetworks()" ios="md-share"></ion-icon>
-        </div>
-        <div class="content">
-          <ion-row style="margin-top:3rem">
-            <ion-card>
-                <ion-item>
-                  <ion-avatar item-start>
-                    <ion-icon name="call" style="color:darkblue"></ion-icon>
-                  </ion-avatar>
-                  <h2>Telefone</h2>
-                  <p>{{ currentUser.countryCode + " " + currentUser.phoneNumber }}</p>
-                </ion-item>
-              </ion-card>
-            </ion-row>
-            <ion-row>
-              <ion-card (click)='connectLinkediIn()'>
-                <ion-item connectLinkediIn>
-                  <ion-avatar item-start>
-                      <ion-icon name="logo-linkedin" [ngStyle]="{'color': linkedinProfile.firstName != undefined ? '#0077B5' : ''}"></ion-icon>
-                  </ion-avatar>
-                  <h2>LinkedIn</h2>
-                  <p>{{linkedinProfile.firstName}}</p>
-                </ion-item>
-              </ion-card>
-            </ion-row>
-            <ion-row>
-              <ion-card (click)='connectInstagram()'>
-                <ion-item>
-                  <ion-avatar item-start>
-                      <ion-icon name="logo-instagram" [ngStyle]="{'color': instagramProfile.username != undefined ? '#ac3973' : ''}"></ion-icon>
-                  </ion-avatar>
-                  <h2>Instagram</h2>
-                  <p>{{ instagramProfile.username }}</p>
-                </ion-item>
-              </ion-card>
-            </ion-row>
-            <ion-row>
-              <ion-card (click)='connectTwitter()'>
-                <ion-item>
-                  <ion-avatar item-start>
-                      <ion-icon name="logo-twitter" [ngStyle]="{'color': twitterProfile.userName != undefined ? '#039be5' : ''}"></ion-icon>
-                  </ion-avatar>
-                  <h2>Twitter</h2>
-                  <p>{{ twitterProfile.userName }}</p>
-                </ion-item>
-              </ion-card>
-            </ion-row>
-
-          
-             
-        </div>
-      </div> 
-      <ion-row>
-          <ion-col>
-              <ion-list>
-                  <ion-item (click)="logout()">
-                      <ion-icon name="power" item-start></ion-icon>
-                    Logout
-                  </ion-item>
-              </ion-list>
-          </ion-col>
-        </ion-row>
-</ion-content>
+  <ion-content>
+    <ion-toolbar>
+      <ion-title>Just Tap</ion-title>
+    </ion-toolbar>
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+          <ion-icon name="{{p.icon}}" item-start></ion-icon>
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+  <ion-footer>
+      <ion-item  menuClose (click)="logout()">
+          <ion-icon name="power" item-start></ion-icon>
+        Logout
+      </ion-item>
+  </ion-footer>
+</ion-menu>
+  
+  <ion-nav id="nav" [root]="currentPage" #content swipeBackEnabled="false"></ion-nav>

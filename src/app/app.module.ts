@@ -4,9 +4,8 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { UserService } from '../services/userService'
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { MyProfilesPage } from '../pages/my-profiles/my-profiles';
 import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
 import { HTTP } from '@ionic-native/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { LinkedIn } from '@ionic-native/linkedin';
@@ -31,19 +30,23 @@ import { HttpModule } from '@angular/http';
 import { UserProvider } from '../providers/user/user';
 import { SplashPage } from '../pages/splash/splash';
 import { IonicStorageModule } from '@ionic/storage';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { ProfileSharingConfirmationPage } from '../pages/profile-sharing-confirmation/profile-sharing-confirmation';
+import { MainProfilePage } from '../pages/main-profile/main-profile';
 
 @NgModule({
   declarations: [
     MyApp,
     AboutPage,
-    ContactPage,
+    MyProfilesPage,
     HomePage,
-    TabsPage,
     PresentationPage,
     SignInPage,
     SignUpPage,
     VerifyNumberPage,
-    SplashPage
+    SplashPage,
+    ProfileSharingConfirmationPage,
+    MainProfilePage
   ],
   imports: [
     BrowserModule,
@@ -61,6 +64,7 @@ import { IonicStorageModule } from '@ionic/storage';
       messagingSenderId: "723897753446"
     }),
     AngularFireDatabaseModule,
+    AngularFirestoreModule,
     AngularFireAuthModule,
     IonicModule.forRoot(MyApp, { tabsLayout: 'icon-start', tabsPlacement: 'top'})
   ],
@@ -68,14 +72,15 @@ import { IonicStorageModule } from '@ionic/storage';
   entryComponents: [
     MyApp,
     AboutPage,
-    ContactPage,
+    MyProfilesPage,
     HomePage,
-    TabsPage,
     PresentationPage,
     SignInPage,
     SignUpPage,
     VerifyNumberPage,
-    SplashPage
+    SplashPage,
+    ProfileSharingConfirmationPage,
+    MainProfilePage
   ],
   providers: [
     StatusBar,
