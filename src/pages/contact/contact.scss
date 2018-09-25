@@ -3,7 +3,28 @@ page-contact {
         
     color:#000 !important;
     }
-    ion-icon{
-        font-size: 3em !important; 
-    }
+}
+
+.social-disabled span {
+    color: transparent;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
+ }
+ .social-disabled ion-icon{
+     color: #000;
+     opacity: 0.4;
+ }
+
+ .social-enabled ion-icon{
+    color: #0077B5;
+}
+
+.social-button{
+    width: 50px;
+    height: 50px;
+    border-radius: 3px;
+    margin-left: 5px;
+}
+
+.social-button ion-icon{
+    font-size: 3rem;
 }

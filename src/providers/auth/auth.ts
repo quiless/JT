@@ -151,9 +151,19 @@ export class AuthProvider {
     return this.db.object(`/users/${this.currentUser.key}/profiles`).update(list);
   }
 
+  saveShareUid(uid : any){
+    return this.db.object(`/users/${this.currentUser.key}`).update({"shared": uid});
+  }
+
   removeProfile(index){
     console.log(index);
     return this.db.object(`/users/${this.currentUser.key}/profiles/` + index).remove();
   }
 
+  get testSearch(){
+    return this.db.list('users/',ref=>ref.orderByChild("shared").equalTo("1234")).snapshotChanges()
+    .map(changes => {
+      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    });
+  }
 }

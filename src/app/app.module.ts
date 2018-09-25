@@ -19,7 +19,7 @@ import { PresentationPage } from '../pages/presentation/presentation';
 import { SignInPage } from '../pages/sign-in/sign-in';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { BrMaskerModule } from 'brmasker-ionic-3';
-
+import { ContactsPage } from '../pages/contacts/contacts'
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { ShareModalComponent } from '../modals/share-modal/share-modal'
@@ -31,7 +31,7 @@ import { HttpModule } from '@angular/http';
 import { UserProvider } from '../providers/user/user';
 import { SplashPage } from '../pages/splash/splash';
 import { IonicStorageModule } from '@ionic/storage';
-
+import { QRScanner } from '@ionic-native/qr-scanner';
 @NgModule({
   declarations: [
     MyApp,
@@ -44,7 +44,8 @@ import { IonicStorageModule } from '@ionic/storage';
     SignInPage,
     SignUpPage,
     VerifyNumberPage,
-    SplashPage
+    SplashPage,
+    ContactsPage
   ],
   imports: [
     BrowserModule,
@@ -77,7 +78,8 @@ import { IonicStorageModule } from '@ionic/storage';
     SignInPage,
     SignUpPage,
     VerifyNumberPage,
-    SplashPage
+    SplashPage,
+    ContactsPage
   ],
   providers: [
     StatusBar,
@@ -90,7 +92,8 @@ import { IonicStorageModule } from '@ionic/storage';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     SmsVerificationProvider,
-    UserProvider
+    UserProvider,
+    QRScanner
   ]
 })
 export class AppModule {}

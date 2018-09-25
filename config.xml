@@ -91,5 +91,6 @@
         <variable name="FABRIC_KEY" value="c5a040d468b0798ad8f3eb9a42d72072e0a73b6a" />
     </plugin>
     <plugin name="cordova-plugin-inappbrowser" spec="^3.0.0" />
+    <plugin name="cordova-plugin-qrscanner" spec="^2.6.0" />
     <engine name="android" spec="7.0.0" />
 </widget>
