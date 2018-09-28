@@ -29,7 +29,7 @@ import { ShareModalComponent } from '../../modals/share-modal/share-modal';
 })
 export class MainProfilePage {
 
-  scopes: LinkedInLoginScopes[] = ['r_basicprofile'];
+  scopes: LinkedInLoginScopes[] = ['r_basicprofile', 'r_emailaddress', 'rw_company_admin', 'w_share'];
   linkedinConnected = false;
   linkedinProfile = new Linkedin();
   twitterProfile = new TwitterModel();
@@ -171,7 +171,9 @@ export class MainProfilePage {
     var alerta = this.alert.create();
     if (this.linkedinProfile.id == undefined){
       this.linkedIn.login(this.scopes, false).then(result => {
+        console.log("linkedin result",result);
         this.linkedIn.getRequest('people/~').then((profile : any) => {
+          console.log("linkedin profile",profile);
           this.linkedinProfile = profile;
           this.linkedinProfile.url = profile.siteStandardProfileRequest.url; 
           profile.icon = 'logo-linkedin';

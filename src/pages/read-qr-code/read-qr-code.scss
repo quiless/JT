@@ -5,3 +5,28 @@ page-read-qr-code {
 
   
 }
+
+ngx-qrcode .qrcode img{
+        /* margin: 0 auto; */
+    /* position: relative; */
+    border: 5px solid #000;
+    border-radius: 10px;
+    position: absolute;
+    /* margin: 0 auto; */
+    width: 15rem;
+    left: 50%;
+    margin-left: -7rem;
+    top: 2rem;
+}
+
+
+@media screen and (min-width: 768px) {
+
+    .bg-qrcode-cam{
+        display: block;
+        top: -240px;
+        position: absolute;
+        z-index: -1;
+    }
+
+}

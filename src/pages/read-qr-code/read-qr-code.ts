@@ -17,15 +17,21 @@ import { UtilsService } from '../../services/utilsService';
 })
 export class ReadQrCodePage {
   qrCodeData:any;
+  elementType : 'url' | 'canvas' | 'img' = 'url';
+  numberQrcode : string;
+
   constructor(private qrScanner: QRScanner,public navCtrl: NavController,public viewCtrl:ViewController, public navParams: NavParams,public utils:UtilsService) {
+    this.numberQrcode = this.utils.guid();
   }
 
   ionViewDidLoad() {
-    this.scannerCode();
+    if(this.utils.isCordovaAvailable)
+      this.scannerCode();
   }
 
   ionViewDidLeave() {
-    this.qrScanner.hide();
+    if(this.utils.isCordovaAvailable)
+      this.qrScanner.hide();
   }
   
   dismiss(){

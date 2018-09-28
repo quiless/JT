@@ -101,15 +101,18 @@ export class HomePage {
     } else if (this.device.platform === 'Android') {
       app = androidPackageName;
     } else {
+      console.log("else device browser",httpUrl + username, '_system')
       let browser =  new InAppBrowser().create(httpUrl + username, '_system');
       return;
     }
 
     this.appAvailability.check(app).then(
       () => { // success callback
+        console.log("success",appUrl + username, '_system');
         let browser = new InAppBrowser().create(appUrl + username, '_system');
       },
       () => { // error callback
+        console.log("error",httpUrl + username, '_system');
         let browser = new InAppBrowser().create(httpUrl + username, '_system');
       }
     );
@@ -124,11 +127,13 @@ export class HomePage {
   }
 
   openLinkedin() {
-    this.launchExternalApp('linkedin://', 'com.linkedin.android', 'linkedin://profile/profile_id=?', 'https://linkedin.com/', "CNAdDIFRlo");
+    this.launchExternalApp('linkedin://', 'com.linkedin.android', 'linkedin://#profile/id=', 'https://linkedin.com/', "CNAdDIFRlo");
   }
 
   openLinkedin3() {
-    this.launchExternalApp('linkedin://', 'com.linkedin.android', 'linkedin://profile/client_id=?', 'https://linkedin.com/', "CNAdDIFRlo");
+    //
+    let browser =  new InAppBrowser().create('https://www.linkedin.com/in/comercial-gclaims/', '_system');
+    //this.launchExternalApp('linkedin://', 'com.linkedin.android', 'linkedin://profile/', 'https://linkedin.com/', "comercial-gclaims");
   }
 
   logout(){   

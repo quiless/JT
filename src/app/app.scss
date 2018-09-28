@@ -98,13 +98,13 @@ ion-content{
 .profile-box .header{
     background-color: #ebeff2;
     padding: 10px;
-    min-height: 15%px;
+    min-height: 15%;
     color: #000 !important;
 }
 
 .profile-box .header .avatar img{
     border-radius: 50%;
-    max-width: 25%;
+    height: 90px;
     position: absolute;
     box-shadow: 1px 1px 2px #777;
 }
@@ -114,12 +114,12 @@ ion-content{
 }
 
 .profile-box .header ion-icon{
-        /* float: right; */
-        font-size: 25px !important;
-        position: absolute;
-        left: 87%;
-        top: 40px;
-        color: #888;
+    float: right;
+    font-size: 25px !important;
+    position: relative;
+    top: -40px !important;
+    right: 10px;
+    color: #888;
 }
 .profile-box .content{
     
