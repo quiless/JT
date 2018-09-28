@@ -10,6 +10,8 @@ import { HTTP } from '@ionic-native/http';
 import { StatusBar } from '@ionic-native/status-bar';
 import { LinkedIn } from '@ionic-native/linkedin';
 import { InAppBrowser } from '@ionic-native/in-app-browser';
+import { Device } from '@ionic-native/device';
+import { AppAvailability } from '@ionic-native/app-availability';
 import { TwitterConnect } from '@ionic-native/twitter-connect';
 import { TwitterService } from 'ng2-twitter';
 import { LongPressModule } from 'ionic-long-press';
@@ -33,7 +35,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { ProfileSharingConfirmationPage } from '../pages/profile-sharing-confirmation/profile-sharing-confirmation';
 import { MainProfilePage } from '../pages/main-profile/main-profile';
-
+import { Sim } from '@ionic-native/sim';
 import { QRScanner } from '@ionic-native/qr-scanner';
 import { SharedWithPage } from '../pages/shared-with/shared-with';
 import { PendingApprovalsPage } from '../pages/pending-approvals/pending-approvals';
@@ -45,6 +47,7 @@ import { ReadQrCodePage } from '../pages/read-qr-code/read-qr-code';
 import { ScreenOrientation } from '@ionic-native/screen-orientation';
 import { Keyboard } from '@ionic-native/keyboard';
 import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -116,7 +119,10 @@ import { environment } from '../environments/environment';
     ScreenOrientation,
     QRScanner,
     Keyboard,
-    OneSignal
+    OneSignal,
+    Sim,
+    AppAvailability,
+    Device
   ]
 })
 export class AppModule {}

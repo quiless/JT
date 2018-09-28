@@ -81,8 +81,10 @@ export class MainProfilePage {
       this.oauthInstagram.logInVia(this.instagramProvider).then((success : any)=> {
         console.log("loginVia success",success);
         this.userService.getInstagramUserInfo(success.access_token).then((result : any) => {
-          console.log("get instagran userinfo");
+          
+       
           var resultado = JSON.parse(result.data);
+          console.log(resultado);
           this.instagramProfile.username = resultado.data.username;
           this.instagramConnected = true;     
           result.icon = 'logo-instagram';
@@ -118,6 +120,7 @@ export class MainProfilePage {
       var alerta = this.alert.create();
       this.twitterConnect.login().then((result : any) => {
         this.twitterProfile = result;
+        console.log(result);
         result.icon = 'logo-twitter';
         result.name = 'twitter';
         this.userService.pushLst(result);

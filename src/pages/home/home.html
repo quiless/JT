@@ -1,6 +1,6 @@
 <ion-menu [content]="content">
 
- 
+
 
   <ion-content>
     <ion-toolbar>
@@ -8,22 +8,34 @@
     </ion-toolbar>
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          <ion-icon name="{{p.icon}}" item-start></ion-icon>
+        <ion-icon name="{{p.icon}}" item-start></ion-icon>
         {{p.title}}
-        
+
         <ion-badge item-end *ngIf="p.badge">{{p.badge}}</ion-badge>
       </button>
     </ion-list>
   </ion-content>
   <ion-footer>
-      <ion-item  menuClose (click)="simulator()" *ngIf="environment.enableSimulator">
-        Simulator
-      </ion-item>
-      <ion-item  menuClose (click)="logout()">
-          <ion-icon name="power" item-start></ion-icon>
-        Logout
-      </ion-item>
+    <ion-item menuClose (click)="simulator()" *ngIf="environment.enableSimulator">
+      Simulator
+    </ion-item>
+    <ion-item menuClose (click)="openLinkedin3()">
+      <ion-icon name="logo-linkedin" item-start></ion-icon>
+      Linkedin
+    </ion-item>
+    <ion-item menuClose (click)="openInstagram()">
+      <ion-icon name="logo-instagram" item-start></ion-icon>
+      Instagram
+    </ion-item>
+    <ion-item menuClose (click)="openTwitter()">
+      <ion-icon name="logo-twitter" item-start></ion-icon>
+      Twitter
+    </ion-item>
+    <ion-item menuClose (click)="logout()">
+      <ion-icon name="power" item-start></ion-icon>
+      Logout
+    </ion-item>
   </ion-footer>
 </ion-menu>
-  
-  <ion-nav id="nav" [root]="currentPage" #content swipeBackEnabled="false"></ion-nav>
+
+<ion-nav id="nav" [root]="currentPage" #content swipeBackEnabled="false"></ion-nav>
