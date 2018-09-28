@@ -40,6 +40,13 @@ export class AuthProvider {
     })
   }
 
+  
+  nullSubscriber(observer) {
+    observer.next(undefined);
+    observer.complete();
+    return {unsubscribe() {}};
+  }
+
   get authState(){
    /**return  
    this.afAuth.authState.subscribe((auth)=>{
@@ -53,7 +60,9 @@ export class AuthProvider {
     return  this.afAuth.authState.switchMap(auth  => {
       if (auth) {
         return this.getUser(auth.uid);
-      } else return new EmptyObservable();
+      } else {
+        return new Observable(this.nullSubscriber);
+      }
     });
   }
 
@@ -110,10 +119,9 @@ export class AuthProvider {
     return this.db.object(`/users/${this.currentUser.key}/instagram`).valueChanges();
   }
 
-  getProfiles(){
+  getProfiles(){   
     return this.db.object(`/users/${this.currentUser.key}/profiles`).valueChanges();
   }
-
   
   getTwitter(){
     return this.db.object(`/users/${this.currentUser.key}/twitter`).valueChanges();
@@ -140,6 +148,10 @@ export class AuthProvider {
     return this.db.object(`/users/${this.currentUser.key}/twitter`).remove();
   }
 
+  updateOneSignalInfo(oneSignal : any){
+    return this.db.object(`/users/${this.currentUser.key}/oneSignal`).update(oneSignal);   
+  }
+
   updateInstagram(instagram : any){
     return this.db.object(`/users/${this.currentUser.key}/instagram`).update(instagram);   
   }
@@ -152,9 +164,31 @@ export class AuthProvider {
     return this.db.object(`/users/${this.currentUser.key}/profiles`).update(list);
   }
 
+  saveShareUid(uid : any){
+    return this.db.object(`/users/${this.currentUser.key}`).update({"shared": uid});
+  }
+
   removeProfile(index){
     console.log(index);
     return this.db.object(`/users/${this.currentUser.key}/profiles/` + index).remove();
+  }
+
+  removeUserShareUid(userKey:any){
+    return this.db.object(`/users/${userKey}/shared`).remove();
+  }
+
+  findUserWithShareCode(code){
+    return new Promise((resolve,reject)=>{
+      this.db.list('users/',ref=>ref.orderByChild("shared").equalTo(code)).snapshotChanges()
+      .map(changes => {
+        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+      })
+      .subscribe((data)=>{
+        resolve(data);
+      },(error)=>{
+        reject(error);
+      });
+    });
   }
 
   get testSearch(){

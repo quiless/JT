@@ -10,10 +10,15 @@
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
           <ion-icon name="{{p.icon}}" item-start></ion-icon>
         {{p.title}}
+        
+        <ion-badge item-end *ngIf="p.badge">{{p.badge}}</ion-badge>
       </button>
     </ion-list>
   </ion-content>
   <ion-footer>
+      <ion-item  menuClose (click)="simulator()" *ngIf="environment.enableSimulator">
+        Simulator
+      </ion-item>
       <ion-item  menuClose (click)="logout()">
           <ion-icon name="power" item-start></ion-icon>
         Logout

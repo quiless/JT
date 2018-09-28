@@ -5,4 +5,5 @@ export class user {
     fullPhoneNumber:string;
     firstName:string;
     lastName:string;
+    oneSignal:any;
 }

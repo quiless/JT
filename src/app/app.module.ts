@@ -18,10 +18,10 @@ import { PresentationPage } from '../pages/presentation/presentation';
 import { SignInPage } from '../pages/sign-in/sign-in';
 import { SignUpPage } from '../pages/sign-up/sign-up';
 import { BrMaskerModule } from 'brmasker-ionic-3';
-
+import { ContactsPage } from '../pages/contacts/contacts'
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
-
+import { ShareModalComponent } from '../modals/share-modal/share-modal'
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
 import { VerifyNumberPage } from '../pages/verify-number/verify-number';
@@ -34,6 +34,17 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { ProfileSharingConfirmationPage } from '../pages/profile-sharing-confirmation/profile-sharing-confirmation';
 import { MainProfilePage } from '../pages/main-profile/main-profile';
 
+import { QRScanner } from '@ionic-native/qr-scanner';
+import { SharedWithPage } from '../pages/shared-with/shared-with';
+import { PendingApprovalsPage } from '../pages/pending-approvals/pending-approvals';
+import { SimulatorPage } from '../pages/simulator/simulator';
+import { UtilsService } from '../services/utilsService';
+import { ProfileViewPage } from '../pages/profile-view/profile-view';
+import { OneSignal } from '@ionic-native/onesignal';
+import { ReadQrCodePage } from '../pages/read-qr-code/read-qr-code';
+import { ScreenOrientation } from '@ionic-native/screen-orientation';
+import { Keyboard } from '@ionic-native/keyboard';
+import { environment } from '../environments/environment';
 @NgModule({
   declarations: [
     MyApp,
@@ -41,12 +52,19 @@ import { MainProfilePage } from '../pages/main-profile/main-profile';
     MyProfilesPage,
     HomePage,
     PresentationPage,
+    ShareModalComponent,
     SignInPage,
     SignUpPage,
     VerifyNumberPage,
     SplashPage,
     ProfileSharingConfirmationPage,
-    MainProfilePage
+    MainProfilePage,
+    ContactsPage,
+    SharedWithPage,
+    PendingApprovalsPage,
+    SimulatorPage,
+    ProfileViewPage,
+    ReadQrCodePage
   ],
   imports: [
     BrowserModule,
@@ -55,14 +73,7 @@ import { MainProfilePage } from '../pages/main-profile/main-profile';
     BrMaskerModule,
     HttpModule,
     IonicStorageModule.forRoot(),
-    AngularFireModule.initializeApp({
-      apiKey: "AIzaSyCPkujlY1dTQjZGukzXjzqPNK5CY33PF4k",
-      authDomain: "justtap-8e195.firebaseapp.com",
-      databaseURL: "https://justtap-8e195.firebaseio.com",
-      projectId: "justtap-8e195",
-      storageBucket: "justtap-8e195.appspot.com",
-      messagingSenderId: "723897753446"
-    }),
+    AngularFireModule.initializeApp(environment.apiKeys.firebase),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
@@ -74,13 +85,20 @@ import { MainProfilePage } from '../pages/main-profile/main-profile';
     AboutPage,
     MyProfilesPage,
     HomePage,
+    ShareModalComponent,
     PresentationPage,
     SignInPage,
     SignUpPage,
     VerifyNumberPage,
     SplashPage,
     ProfileSharingConfirmationPage,
-    MainProfilePage
+    MainProfilePage,
+    ContactsPage,
+    SharedWithPage,
+    PendingApprovalsPage,
+    SimulatorPage,
+    ProfileViewPage,
+    ReadQrCodePage
   ],
   providers: [
     StatusBar,
@@ -89,11 +107,16 @@ import { MainProfilePage } from '../pages/main-profile/main-profile';
     LinkedIn,
     TwitterConnect,
     TwitterService,
+    UtilsService,
     InAppBrowser,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     SmsVerificationProvider,
-    UserProvider
+    UserProvider,
+    ScreenOrientation,
+    QRScanner,
+    Keyboard,
+    OneSignal
   ]
 })
 export class AppModule {}

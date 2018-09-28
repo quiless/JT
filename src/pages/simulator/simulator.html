@@ -1,0 +1,21 @@
+<!--
+  Generated template for the SimulatorPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle icon-only class="menuButton"> 
+            <ion-icon name="menu"></ion-icon>
+          </button>
+      <ion-title>Simulator</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+
+<ion-content padding>
+<ion-list>
+    <button ion-item *ngFor="let simulation of simulations; let j = index;" (click)="simulation.fn()">{{ (j + 1) + " - " + simulation.name}}</button>
+</ion-list>
+</ion-content>

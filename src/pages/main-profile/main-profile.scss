@@ -1,51 +1,7 @@
 page-main-profile {
-    .profile-box{
-        box-shadow: 1px 1px 1px #757575;
-        background-color: #FFF;
-        border-radius: 5px;
-    }
-    .profile-box .header{
-        background-color: #ebeff2;
-        padding: 10px;
-        min-height: 15%px;
-        color: #000 !important;
-    }
-    
-    .profile-box .header .avatar img{
-        border-radius: 50%;
-        max-width: 25%;
-        position: absolute;
-        box-shadow: 1px 1px 2px #777;
-    }
-    .profile-box .header h4{
-        padding-left: 33%;
-        font-size: 20px;
-    }
-    
-    .profile-box .header ion-icon{
-            /* float: right; */
-            font-size: 25px !important;
-            position: absolute;
-            left: 87%;
-            top: 40px;
-            color: #888;
-    }
-    .profile-box .content{
-        
-        min-height: 43rem;
-        color: #000 !important;
-    }
+   
     
     
-    .profile-box .content button{
-        margin-top: 37rem !important;
-        margin-left: 27rem !important;
-        position: relative;
-    }
-    
-    .card-md{
-        -webkit-box-shadow: none !important;
-    }
     
     .content ion-icon {
         font-size: 40px!important; //Preferred size here

@@ -1,0 +1,22 @@
+component-share-modal {
+
+    .content {
+        background: #FFF !important; 
+    }
+
+    $background-color: #FFF;
+
+    .qrcode > img {
+        height: 300px !important;
+        display: block;
+        margin-top: 20%;
+        margin-left: auto;
+        margin-right: auto;
+        width: 300px;
+      }
+}
+
+
+ion-app.cameraView, ion-app.cameraView ion-content, ion-app.cameraView .nav-decor {
+    background: #FFF !important; 
+  }

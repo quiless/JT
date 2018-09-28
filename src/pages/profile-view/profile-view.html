@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Contact</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+    <div class="profile-box">
+        <div class="header">
+            <div class="avatar">
+                <img src="../../assets/imgs/no-photo.png">
+            </div>
+            <h4>{{ entity.firstName + " " + entity.lastName }}</h4>
+        </div>
+        <div class="content">
+          <ion-row style="margin-top:3rem" *ngIf="entity?.profile?.phone">
+            <ion-card>
+                <ion-item>
+                  <ion-avatar item-start>
+                    <ion-icon name="call" style="color:darkblue"></ion-icon>
+                  </ion-avatar>
+                  <h2>Telefone</h2>
+                  <p>{{ entity?.profile?.phone?.userAlias }}</p>
+                </ion-item>
+              </ion-card>
+            </ion-row>
+            
+            <ion-row *ngIf="entity?.profile?.linkedin">
+                <ion-card >
+                  <ion-item>
+                    <ion-avatar item-start>
+                        <ion-icon name="logo-linkedin" style="color:darkblue"></ion-icon>
+                    </ion-avatar>
+                    <h2>LinkedIn</h2>
+                    <p>{{ entity?.profile?.linkedin?.firstName}}</p>
+                    <p>{{ entity?.profile?.linkedin?.lastName }}</p>
+                  </ion-item>
+                </ion-card>
+              </ion-row>
+              <ion-row *ngIf="entity?.profile?.instagram">
+                <ion-card>
+                  <ion-item>
+                    <ion-avatar item-start>
+                        <ion-icon name="logo-instagram" style="color:darkblue"></ion-icon>
+                    </ion-avatar>
+                    <h2>Instagram</h2>
+                    <p>Nothing</p>
+                  </ion-item>
+                </ion-card>
+              </ion-row>
+              <ion-row *ngIf="entity?.profile?.twitter">
+                <ion-card >
+                  <ion-item>
+                    <ion-avatar item-start>
+                        <ion-icon name="logo-twitter" style="color:darkblue"></ion-icon>
+                    </ion-avatar>
+                    <h2>Twitter</h2>
+                    <p>{{ entity?.profile?.twitter?.userAlias }}</p>
+                  </ion-item>
+                </ion-card>
+              </ion-row>
+             
+        </div>
+      </div> 
+</ion-content>
+  

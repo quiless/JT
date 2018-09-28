@@ -13,6 +13,8 @@ import { user } from '../../models/user';
 import { UserProvider } from '../../providers/user/user';
 import { ProfileSharingConfirmationPage } from '../profile-sharing-confirmation/profile-sharing-confirmation';
 
+import { ShareModalComponent } from '../../modals/share-modal/share-modal';
+
 /**
  * Generated class for the MainProfilePage page.
  *
@@ -27,7 +29,6 @@ import { ProfileSharingConfirmationPage } from '../profile-sharing-confirmation/
 })
 export class MainProfilePage {
 
-  
   scopes: LinkedInLoginScopes[] = ['r_basicprofile'];
   linkedinConnected = false;
   linkedinProfile = new Linkedin();
@@ -38,8 +39,8 @@ export class MainProfilePage {
 
   private oauthInstagram: OauthCordova = new OauthCordova();
   private instagramProvider: Instagram = new Instagram({
-    clientId: "3ddbc48123db48c0a089453510d3aadb",      
-    redirectUri: 'http://localhost',  
+    clientId: "d9e955bb371a4b1da4718ed0a5c76ebe",      
+    redirectUri: 'http://localhost',  // Let is be localhost for Mobile Apps
     responseType: 'token',   
     appScope: ['basic','public_content'] 
   });
@@ -63,21 +64,24 @@ export class MainProfilePage {
     private linkedIn: LinkedIn, 
     public navCtrl: NavController, 
     private actionSheetController : ActionSheetController,
-    public modalCtrl: ModalController,
+    public modalController: ModalController,
     private auth: AuthProvider) {
 
     this.lstSocials.push({icon : 'call'});
-    this.currentUser = auth.currentUser;
+    this.currentUser = auth.currentUser;    
+  }
 
-    
-    
+  share(){
+    let guaritaModal = this.modalController.create(ShareModalComponent);
+    guaritaModal.present();
   }
 
   connectInstagram(){
-
     if (this.instagramProfile.username == undefined) {
       this.oauthInstagram.logInVia(this.instagramProvider).then((success : any)=> {
+        console.log("loginVia success",success);
         this.userService.getInstagramUserInfo(success.access_token).then((result : any) => {
+          console.log("get instagran userinfo");
           var resultado = JSON.parse(result.data);
           this.instagramProfile.username = resultado.data.username;
           this.instagramConnected = true;     
@@ -104,14 +108,12 @@ export class MainProfilePage {
   }
 
   connectTwitter(){
-    this.userProvider.myRequests.valueChanges().subscribe((data)=>{
-      console.log("here",data);
-    });
+   
     //let profileModal = this.modalCtrl.create(ProfileSharingConfirmationPage);
     //profileModal.present();
     //this.userProvider.RequestProfileSharing("-LNBvnx66rCpYOErveps");
 
-    /**
+    
     if (this.twitterProfile.userId == undefined){
       var alerta = this.alert.create();
       this.twitterConnect.login().then((result : any) => {
@@ -131,7 +133,7 @@ export class MainProfilePage {
       this.userService.spliceLst("logo-twitter");	
       this.events.publish('removeSocials', { social : 'logo-twitter', name : 'twitter'});
     }
-     */
+     /****/
   }
   
   ionViewDidLoad(){

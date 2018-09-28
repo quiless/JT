@@ -1,0 +1,16 @@
+<ion-header>
+    <ion-navbar>
+        <ion-buttons end>
+            <button ion-button (click)="dismiss()"> Fechar </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <ngx-qrcode 
+        [qrc-element-type]="elementType" 
+        qrc-class = "qrcode"
+        [qrc-value] = "numberQrcode">
+    </ngx-qrcode>
+</ion-content>

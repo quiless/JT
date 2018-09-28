@@ -1,0 +1,26 @@
+page-contacts {
+
+}
+
+.qrcode-on ion-content {
+    background: transparent !important;
+}
+
+.qrcode-on .content {
+    background: none transparent !important;
+}
+
+.qrcode-on ion-app.cameraView, ion-app.cameraView ion-content, ion-app.cameraView .nav-decor {
+    background: transparent none !important; 
+}
+
+.qrcode-on ion-app{
+    background: transparent none !important; 
+}
+
+.qrcode-on .contacts-content{
+    display: none;
+}
+.qrcode-on .contacts-footer{
+    display: none;
+}

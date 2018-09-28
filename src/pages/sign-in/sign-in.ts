@@ -4,6 +4,8 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { user } from '../../models/user';
 import { VerifyNumberPage } from '../verify-number/verify-number';
 import { SmsVerificationProvider } from '../../providers/sms-verification/sms-verification';
+import { environment } from '../../environments/environment';
+import { UtilsService } from '../../services/utilsService';
 
 
 /**
@@ -32,6 +34,7 @@ export class SignInPage {
     public auth:AuthProvider,
     public smsVerification:SmsVerificationProvider,
     public alertCtrl:AlertController,
+    public utils:UtilsService,
     public loadingCtrl:LoadingController) {
     
       this.loading = this.loadingCtrl.create({
@@ -71,14 +74,12 @@ export class SignInPage {
     },(error)=>{
       console.log(error)
     });**/
-   /****/
-    this.auth.signIn("-LMsEBF4049LEzg2pfv7").then((data)=>{
-      console.log("success",data);
-    },(error)=>{
-      console.log("error",error);
-    });
-    return;
    /**
+
+   
+    return;
+**/
+  
   if(this.phoneNumber == undefined 
       || (this.countryCode == "+55" && this.phoneNumber.length < 15)
       || (this.countryCode == "+1" && this.phoneNumber.length < 12)){
@@ -91,35 +92,45 @@ export class SignInPage {
         return;
       }
 
-    this.loading.present();
-    this.smsVerification.sendSmsVerification(this.phoneNumber,this.countryCode)
-    .then(data => {
-      this.loading.dismiss();
-      if(data == undefined || (<any>data).success == false){
+   
+    if(environment.simulateSignIn){
+      this.utils.loading(()=>{
+        return  this.auth.signIn(environment.simulateSignInWithUserKey).then((data)=>{
+          this.utils.notify("Success signin");
+        },(error)=>{
+          this.utils.alert("Oops","An error  has occured when we try auto login!")
+        });
+      });    
+    }else{
+      this.loading.present(); 
+      this.smsVerification.sendSmsVerification(this.phoneNumber,this.countryCode)
+      .then(data => {
+        this.loading.dismiss();
+        if(data == undefined || (<any>data).success == false){
+          let alert = this.alertCtrl.create({
+            title: 'Oops',
+            subTitle: 'Your verification code could not be sent! Make sure the phone number is correct.',
+            buttons: ['Dismiss']
+          });
+          alert.present();
+          return;
+        }
+        this.navCtrl.push(VerifyNumberPage, {
+          countryCode : this.countryCode,
+          phoneNumber : this.phoneNumber
+        });
+      }, function (error) {
+        console.log(error);
+        this.loading.dismiss();
         let alert = this.alertCtrl.create({
           title: 'Oops',
           subTitle: 'Your verification code could not be sent! Make sure the phone number is correct.',
           buttons: ['Dismiss']
         });
         alert.present();
-        return;
-      }
-      this.navCtrl.push(VerifyNumberPage, {
-        countryCode : this.countryCode,
-        phoneNumber : this.phoneNumber
       });
-    }, function (error) {
-      console.log(error);
-      this.loading.dismiss();
-      let alert = this.alertCtrl.create({
-        title: 'Oops',
-        subTitle: 'Your verification code could not be sent! Make sure the phone number is correct.',
-        buttons: ['Dismiss']
-      });
-      alert.present();
-    });
-
-     **/
+    }
+    
     
     /**this.navCtrl.push(VerifyNumberPage, {
       "carrier" : "Claro",

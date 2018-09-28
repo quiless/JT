@@ -52,7 +52,14 @@ export class MyProfilesPage {
     console.log(this.socials, "SOCIALS");
   }
   
-
+  guid() {
+    function s4() {
+      return Math.floor((1 + Math.random()) * 0x10000)
+        .toString(16)
+        .substring(1);
+    }
+    return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
+  }
   
 
   addProfile(){
@@ -73,7 +80,11 @@ export class MyProfilesPage {
         {
           text: 'Criar',
           handler: (data) => {
-            this.profiles.push({elementType: 'url', value : '', ProfileName : data.name, socials : {}});
+            this.profiles.push({
+              uid:this.guid(),
+              elementType: 'url', 
+              value : '', 
+              ProfileName : data.name, socials : {}});
             this.auth.updateProfiles(this.profiles);
           }
         }]
