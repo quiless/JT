@@ -14,6 +14,8 @@ import { UserProvider } from '../../providers/user/user';
 import { ProfileSharingConfirmationPage } from '../profile-sharing-confirmation/profile-sharing-confirmation';
 
 import { ShareModalComponent } from '../../modals/share-modal/share-modal';
+import { ReadQrCodePage } from '../read-qr-code/read-qr-code';
+import { UtilsService } from '../../services/utilsService';
 
 /**
  * Generated class for the MainProfilePage page.
@@ -63,6 +65,7 @@ export class MainProfilePage {
     private alert : AlertController, 
     private linkedIn: LinkedIn, 
     public navCtrl: NavController, 
+    public utils:UtilsService,
     private actionSheetController : ActionSheetController,
     public modalController: ModalController,
     private auth: AuthProvider) {
@@ -72,8 +75,36 @@ export class MainProfilePage {
   }
 
   share(){
-    let guaritaModal = this.modalController.create(ShareModalComponent);
-    guaritaModal.present();
+    window.document.querySelector('body').classList.add('qrcode-on');
+   
+    let profileModal = this.modalController.create(ReadQrCodePage);
+    profileModal.onDidDismiss(data => {
+      window.document.querySelector('body').classList.remove('qrcode-on');
+      console.log("did load",data);
+      if(data != undefined){
+        this.auth.findUserWithShareCode(data).then((result)=>{
+          if(result != undefined && (<Array<any>>result).length > 0){
+            let targetUser:any = (<Array<any>>result)[0];
+            
+            if(targetUser.key == this.auth.currentUser.key){
+              this.utils.notify("Sorry! You cant request your profile.");
+              //this.auth.removeUserShareUid(targetUser.key);
+              return;
+            }
+
+            this.userProvider.RequestProfileSharing(targetUser.key).then(()=>{
+              return this.auth.removeUserShareUid(targetUser.key);
+            }).then(()=>{
+              this.utils.alert("Uhuul",`We sent your request to ${targetUser.firstName} ${targetUser.lastName}`);
+            });
+            //key
+          }else{
+            this.utils.notify("Sorry! We did not find this sharing code.");
+          }
+        });
+      }
+    });
+    profileModal.present();
   }
 
   connectInstagram(){

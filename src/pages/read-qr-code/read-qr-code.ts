@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { QRScanner, QRScannerStatus } from '@ionic-native/qr-scanner';
 import { UtilsService } from '../../services/utilsService';
+import { AuthProvider } from '../../providers/auth/auth';
 
 /**
  * Generated class for the ReadQrCodePage page.
@@ -20,8 +21,9 @@ export class ReadQrCodePage {
   elementType : 'url' | 'canvas' | 'img' = 'url';
   numberQrcode : string;
 
-  constructor(private qrScanner: QRScanner,public navCtrl: NavController,public viewCtrl:ViewController, public navParams: NavParams,public utils:UtilsService) {
+  constructor(private qrScanner: QRScanner,public navCtrl: NavController,public viewCtrl:ViewController, public navParams: NavParams,public utils:UtilsService,public auth: AuthProvider) {
     this.numberQrcode = this.utils.guid();
+    this.auth.saveShareUid(this.numberQrcode);
   }
 
   ionViewDidLoad() {
